@@ -1,5 +1,5 @@
 @font-face {
-  font-family: groetsk;
+  font-family: Source;
   src: url(./assets/SourceSerifPro-SemiBold.ttf);
 }
 @font-face {
@@ -8,7 +8,7 @@
 }
 
 :root {
-  font-family: groetsk,  Helvetica, Arial, sans-serif;
+  font-family: Source,  Helvetica, Arial, sans-serif;
   line-height: 1.5;
   /* font-weight: 400; */
 

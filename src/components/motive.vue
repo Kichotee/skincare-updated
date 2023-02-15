@@ -89,7 +89,7 @@
 		height: 100vh;
 		width: 100vw;
 		white-space: nowrap;
-		background-color: #f3f3f3;
+		background-color: #fcfbf4;
 		position: relative;
 		overflow-x: hidden;
         
@@ -122,7 +122,7 @@
 		display: inline-block;
 		position: relative;
 		top: 0;
-        background-color: #f3f3f3;
+        background-color: #fcfbf4;
 	}
 
 	.slide-1 {

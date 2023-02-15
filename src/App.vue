@@ -14,8 +14,8 @@
 	onMounted(() => {
 		tl.from(bg.value, {
 			opacity: 0,
-
-			duration: 3,
+			scale:3,
+			duration: 1.5,
 			
 		})
 		ScrollTrigger.create({
@@ -30,7 +30,7 @@
 			}
 		),
 			scrub: 2,
-			trigger: header_text.value,
+			trigger:img.value,
 		});
 	});
 </script>
@@ -76,7 +76,7 @@
 	.app {
 		min-height: 100vh;
 		max-height: auto;
-		background: #f8f8f8;
+		background: #fcfbf4;
 	}
 	.logo {
 		right: 0;
@@ -113,7 +113,7 @@
 		height: 100%;
 		width: 100%;
 		position: absolute;
-		object-position: left;
+		object-position: center;
 
 	}
 
