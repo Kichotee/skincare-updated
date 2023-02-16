@@ -54,7 +54,7 @@
 			</div>
 		</div>
 		<div ref="ball" class="ball">
-			<p appear @beforeEnter="beforeEnter" @enter="enter" ref="cursor_text">lorem</p>
+			<p appear @beforeEnter="beforeEnter"  ref="cursor_text">lorem</p>
 		</div>
 	</div>
 </template>
