@@ -7,19 +7,61 @@
 	import ScrollTrigger from "gsap/ScrollTrigger";
 
 	gsap.registerPlugin(ScrollTrigger);
+	const header_text_frag_1 = ref("");
+	const header_text_frag_2 = ref("");
+	const header_text_frag_3 = ref("");
 	const header_text = ref("");
+	const button_ref = ref("");
+	const button_text_ref = ref("");
 	const bg = ref("");
 	const img = ref("");
 	const tl = gsap.timeline();
+	const tl2 = gsap.timeline();
 	onMounted(() => {
 		tl.from(bg.value, {
 			opacity: 0,
-			scale:3,
-			duration: 1.5,
-			
+			scale: 3,
+			duration: 1,
 		})
-		ScrollTrigger.create({
-			animation: gsap.fromTo(
+			.from(header_text_frag_1.value, {
+				xPercent: -100,
+				duration: 1,
+			})
+			.from(header_text_frag_2.value, {
+				yPercent: 1000,
+				duration: 1,
+				// fontStyle: "italic"
+			})
+			.from(header_text_frag_3.value, {
+				xPercent: 100,
+				duration: 1,
+			})
+			.fromTo(
+				button_ref.value,
+				{
+					width: "50px",
+					height: "60px",
+					duration: 0.25,
+					borderRadius: "50%",
+				},
+				{
+					borderRadius: "1rem",
+					width: "20%",
+					height: "30%",
+				}
+			)
+			.fromTo(
+				button_text_ref.value,
+				{
+					opacity: 0,
+					duration: 0.25,
+				},
+				{
+					opacity: 1,
+				}
+			);
+
+		tl2.fromTo(
 			img.value,
 			{
 				scale: 1,
@@ -28,9 +70,25 @@
 			{
 				scale: 2,
 			}
-		),
-			scrub: 2,
-			trigger:img.value,
+		);
+
+		ScrollTrigger.create({
+			animation: gsap.fromTo(
+				header_text.value,
+
+				{
+					yPercent: 100,
+				},
+				{yPercent:-20}
+			),
+			scrub: 3,
+			trigger: img.value,
+		});
+		ScrollTrigger.create({
+			animation: tl2,
+			scrub: 3,
+			trigger: img.value,
+			// markers:true
 		});
 	});
 </script>
@@ -51,18 +109,35 @@
 					class="home-header-media-content"
 				>
 					<div
+						ref="home-header-media-content-text"
 						class="home-header-media-content-text"
 					>
-						<p>Grace your body</p>
-						<p>
+						<p ref="header_text_frag_1">
+							Grace your body
+						</p>
+						<p class="lower-header-text">
 							<span
-								><em>Adorn </em> your skin
+								ref="header_text_frag_2"
+								class="italic-text"
+							>
+								Adorn
+							</span>
+							<span
+								class="bold-text-frag"
+								ref="header_text_frag_3"
+							>
+								your skin
 							</span>
 						</p>
 					</div>
 					<button
+						ref="button_ref"
 						class="home-header-media-content-button"
-					></button>
+					>
+						<h2 ref="button_text_ref">
+							Shop now
+						</h2>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -77,6 +152,7 @@
 		min-height: 100vh;
 		max-height: auto;
 		background: #fcfbf4;
+		scroll-behavior: smooth;
 	}
 	.logo {
 		right: 0;
@@ -92,8 +168,6 @@
 		justify-content: center;
 		align-items: center;
 		object-fit: cover;
-		
-		
 	}
 	.bg {
 		object-fit: cover;
@@ -102,7 +176,7 @@
 		width: 90%;
 		overflow: hidden;
 		position: absolute;
-		border-radius: 0.25rem;
+		border-radius: 0.5rem;
 	}
 	img {
 		border-image-outset: 0;
@@ -114,16 +188,15 @@
 		width: 100%;
 		position: absolute;
 		object-position: center;
-
 	}
 
 	.home-header-media-content {
 		z-index: 2;
 		position: relative;
-		top:50%;
-		width: 50%;
-		height: 40%;
-
+		top: 50%;
+		width: 60%;
+		height: 30%;
+		/* border: solid; */
 		align-self: center;
 		font-size: 2rem;
 		font-weight: 600;
@@ -133,17 +206,71 @@
 		justify-content: center;
 		margin: 0 auto;
 		gap: 12%;
-		line-height: 1.2rem;
-		color:inherit;
+		line-height: 2rem;
+		color: inherit;
+		/* overflow-x: hidden; */
 	}
 	.home-header-media-content-text {
 		font-size: 2.2rem;
+		height: 50%;
+		/* overflow-x: hidden; */
 	}
 	button {
-		width: 40%;
+		width: 30%;
 		height: 30%;
 		outline: none;
 		border-radius: 1rem;
 		border: none;
+		background-color: #fcfbf4;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #343434;
+		position: relative;
+	}
+	button h2 {
+		font-size: 0.8rem;
+		position: absolute;
+		z-index: 4;
+	}
+	button::after {
+		height: 105%;
+		border-radius: 1.98rem;
+		position: absolute;
+		transition: all 0.5s;
+		width: 65%;
+		content: "";
+		z-index: 3;
+		background-color: #121212;
+		scale: 0.5;
+		visibility: hidden;
+		border: none;
+		opacity: 0;
+		transform-origin: center center;
+		border-inline-start: 0;
+		border-inline-end: 0;
+	}
+	button:hover {
+		color: #fcfbf4;
+	}
+	button:hover::after {
+		visibility: visible;
+		opacity: 1;
+		border-radius: 0.98rem;
+		scale: 1;
+		width: 105%;
+	}
+
+	.lower-header-text {
+		font-style: italic;
+	}
+	.italic-text {
+		font-style: italic;
+		overflow: hidden;
+	}
+	.bold-text-frag {
+		font-style: oblique;
+		letter-spacing: 2px;
+		font-kerning: 2px;
 	}
 </style>
