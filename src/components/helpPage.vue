@@ -155,7 +155,7 @@
 			start: "top top",
 			end: "400px",
 			
-			scrub: 2,
+			scrub: 8,
 		});
 		const v = gsap.timeline();
 
@@ -174,7 +174,7 @@
 			animation: d,
 			target: ".figure-1",
 			start: "top top",
-			scrub: 1,
+			scrub: 8,
 		});
 		const k = gsap.timeline();
 		k.fromTo(
@@ -210,7 +210,7 @@
 			animation: m,
 			target: ".figure-3",
 			start: "top top",
-			scrub: 2,
+			scrub: 8,
 		});
 		const n = gsap.timeline();
 		n.fromTo(
@@ -227,7 +227,7 @@
 			animation: n,
 			target: ".figure-4",
 			start: "top top",
-			scrub: 2,
+			scrub: 8,
 		});
 	});
 </script>
@@ -239,13 +239,14 @@
 		width: 100vw;
 		position: relative;
 		background: #fcfbf4;
-		/*  */
-		font-family: groetsk-mono;
+		
+		font-family: Montreal;
 	}
 
 	.wrapper {
 		height: 100%;
 		width: 100%;
+		position: relative;
 		display: grid;
 		overflow: hidden;
 		grid-template-columns: repeat(4, 1fr);
@@ -263,7 +264,7 @@
 	.info-content-text {
 		position: relative;
 		grid-column: 3/-1;
-		grid-row: 1;
+		grid-row: 1/ 3;
 		align-self: center;
 		justify-self: self-start;
 		text-align: center;
@@ -276,7 +277,7 @@
 	h4 {
 		font-weight: bolder;
 		text-align: center;
-		font-family: Source;
+		font-family: editorial;
 		letter-spacing: 2px;
 	}
 
@@ -289,6 +290,7 @@
 		/* position: relative; */
 		display: inline-block;
 		padding-right: 10px;
+		font-family: editorial;
 	}
 	.info-content-text-2 {
 		/* border: solid; */
@@ -300,13 +302,18 @@
 	}
 	.info-content-text-2 {
 		display: inline-block;
+		font-family: editorial;
 		/* border: solid; */
 	}
 
 	.info-content-text-paragraph {
 		font-size: 1.5rem;
+		font-family: editorial;
 		line-height: 1.5;
 	}
+	.about_summer-sale{
+		font-family: Montreal;
+	} 
 
 	.media-1 {
 		grid-column: 1 / span 2;

@@ -96,6 +96,8 @@
 			trigger: ".motivationPage",
 			scrub: 8,
 			pin: true,
+			start:'top top',
+			anticipatePin:1,
 			snap: 1 / (panels.length - 1),
 			// pinSpacing:false,
 		});

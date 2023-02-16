@@ -2,6 +2,7 @@
 	import helpPage from "./components/helpPage.vue";
 	import motive from "./components/motive.vue";
 	import nextPhase from "./components/nextPhase.vue";
+	import detailsPage from "./components/detailsPage.vue";
 	import { onMounted, ref } from "vue";
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
@@ -18,12 +19,19 @@
 	const tl = gsap.timeline();
 	const tl2 = gsap.timeline();
 	onMounted(() => {
-		tl.from(bg.value, {
+		gsap.from(document.body,{
+			duration:2,
+			scrollTrigger:{
+				scrub:3
+			}
+		})
+		gsap.from(bg.value, {
 			opacity: 0,
 			scale: 3,
-			duration: 1,
+			duration: 3,
+			ease:'power2.out'
 		})
-			.from(header_text_frag_1.value, {
+			tl.from(header_text_frag_1.value, {
 				xPercent: -100,
 				duration: 1,
 			})
@@ -41,14 +49,13 @@
 				{
 					width: "50px",
 					height: "60px",
-					duration: 0.25,
 					borderRadius: "50%",
 				},
 				{
 					borderRadius: "1rem",
 					width: "20%",
-					height: "30%",
-				}
+					height: "15%",
+				},'<'
 			)
 			.fromTo(
 				button_text_ref.value,
@@ -64,10 +71,11 @@
 		tl2.fromTo(
 			img.value,
 			{
-				scale: 1,
-				duration: 3,
+				scale:0.5,
+				
 			},
 			{
+				duration: 5,
 				scale: 2,
 			}
 		);
@@ -81,7 +89,7 @@
 				},
 				{yPercent:-20}
 			),
-			scrub: 3,
+			scrub: 1,
 			trigger: img.value,
 		});
 		ScrollTrigger.create({
@@ -99,10 +107,10 @@
 			<div ref="bg" class="bg">
 				<img
 					ref="img"
-					src="./assets/images/pexels-ron-lach-8142196.jpg"
+					src="./assets/images/autumn-goodman-vTL_qy03D1I-unsplash.jpg"
 					alt=""
 				/>
-				<div class="logo">Brahma</div>
+				<!-- <div class="logo">Brahma</div> -->
 
 				<div
 					ref="header_text"
@@ -113,9 +121,9 @@
 						class="home-header-media-content-text"
 					>
 						<p ref="header_text_frag_1">
-							Grace your body
+							Grace your <span>body</span> 
 						</p>
-						<p class="lower-header-text">
+						
 							<span
 								ref="header_text_frag_2"
 								class="italic-text"
@@ -128,7 +136,7 @@
 							>
 								your skin
 							</span>
-						</p>
+					
 					</div>
 					<button
 						ref="button_ref"
@@ -142,8 +150,10 @@
 			</div>
 		</div>
 		<helpPage />
+		<detailsPage/>
 		<motive />
 		<nextPhase />
+		
 	</div>
 </template>
 
@@ -153,6 +163,8 @@
 		max-height: auto;
 		background: #fcfbf4;
 		scroll-behavior: smooth;
+		font-family: editorial;
+		word-spacing: 0.75rem;
 	}
 	.logo {
 		right: 0;
@@ -160,6 +172,7 @@
 		position: fixed;
 	}
 	.bg-box {
+
 		height: 100vh;
 		width: 100%;
 		position: relative;
@@ -171,12 +184,16 @@
 	}
 	.bg {
 		object-fit: cover;
-		height: 90%;
+		height: 80%;
 		margin: 0 auto;
-		width: 90%;
+		width: 95%;
 		overflow: hidden;
 		position: absolute;
+		border: solid;
 		border-radius: 0.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 	img {
 		border-image-outset: 0;
@@ -188,36 +205,39 @@
 		width: 100%;
 		position: absolute;
 		object-position: center;
+		
+
 	}
 
 	.home-header-media-content {
 		z-index: 2;
 		position: relative;
-		top: 50%;
 		width: 60%;
-		height: 30%;
+		height: 70%;
 		/* border: solid; */
 		align-self: center;
-		font-size: 2rem;
+		
 		font-weight: 600;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		margin: 0 auto;
-		gap: 12%;
+		
+		
 		line-height: 2rem;
 		color: inherit;
 		/* overflow-x: hidden; */
 	}
 	.home-header-media-content-text {
-		font-size: 2.2rem;
-		height: 50%;
-		/* overflow-x: hidden; */
+		font-size: 3rem;
+		line-height: 2.2rem;
+		overflow-x: hidden;
+		height: 40%;
+		padding: 1rem 0;
 	}
 	button {
-		width: 30%;
-		height: 30%;
+		width: 20%;
+		height: 20%;
 		outline: none;
 		border-radius: 1rem;
 		border: none;
@@ -256,21 +276,32 @@
 	button:hover::after {
 		visibility: visible;
 		opacity: 1;
-		border-radius: 0.98rem;
+		border-radius: 2rem;
 		scale: 1;
 		width: 105%;
 	}
 
 	.lower-header-text {
+		
+	}
+	span:first-of-type{
+
+		font-family: Montreal;
 		font-style: italic;
 	}
 	.italic-text {
 		font-style: italic;
+		font-family: Montreal;
 		overflow: hidden;
+		display: inline-block;
+		vertical-align: middle;
+		padding-right: 9px;
 	}
 	.bold-text-frag {
 		font-style: oblique;
 		letter-spacing: 2px;
 		font-kerning: 2px;
+		display: inline-block;
+		vertical-align: middle;
 	}
 </style>

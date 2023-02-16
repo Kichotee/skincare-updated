@@ -5,17 +5,26 @@
 @font-face {
   font-family: groetsk-mono;
   src: url(./assets/SourceSerifPro-Regular.ttf);
+
+}
+@font-face {
+  font-family:Montreal ;
+  src: url(./assets/Montreal.otf);
+}
+@font-face {
+  font-family: editorial;
+  src: url(./assets//EditorialNew-Regular_7554583a86c9d224a2e295ed0cebc7ee.otf);
 }
 
 :root {
-  font-family: Source,  Helvetica, Arial, sans-serif;
+  font-family: Montreal,  Helvetica, Arial, sans-serif;
   line-height: 1.5;
   /* font-weight: 400; */
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  /* text-rendering: optimizeLegibility; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
