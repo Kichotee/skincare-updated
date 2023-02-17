@@ -50,6 +50,8 @@
 	}
 	.frame2 {
 		/* visibility: hidden; */
-        background: pink
+        background: pink;
+        height: 100%;
+        width: 100%;
 	}
 </style>

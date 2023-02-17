@@ -173,6 +173,9 @@
 		background-color: #fcfbf4;
 		overflow: hidden;
 	}
+	.slides:last-of-type{
+		overflow: scroll;
+	}
 	.productsBox {
 		/* display: inline-block; */
 		
