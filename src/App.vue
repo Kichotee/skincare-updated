@@ -1,7 +1,6 @@
 <script setup lang="ts">
 	import helpPage from "./components/helpPage.vue";
 	import motive from "./components/motive.vue";
-	import nextPhase from "./components/nextPhase.vue";
 	import detailsPage from "./components/detailsPage.vue";
 	import { onMounted, ref } from "vue";
 	import gsap from "gsap";
@@ -19,17 +18,14 @@
 	const tl = gsap.timeline();
 	const tl2 = gsap.timeline();
 	onMounted(() => {
-		gsap.from(document.body,{
-			duration:2,
-			scrollTrigger:{
-				scrub:3
-			}
-		})
+		
 		gsap.from(bg.value, {
 			opacity: 0,
-			scale: 3,
-			duration: 3,
-			ease:'power2.out'
+			scaleX:1.5,
+			scaleY:1.5,
+			duration: 5,
+			ease:'expoOut'
+			// ease:("custom","M0,0,C0.126,0.382,-0.112,0.941,0.104,0.948,0.494,0.96,0.818,1.001,1,1"),
 		})
 			tl.from(header_text_frag_1.value, {
 				xPercent: -100,
@@ -152,7 +148,6 @@
 		<helpPage />
 		<detailsPage/>
 		<motive />
-		<nextPhase />
 		
 	</div>
 </template>

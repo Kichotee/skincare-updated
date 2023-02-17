@@ -1,8 +1,11 @@
 <template>
 	<div class="motivationPage">
+		
+		<nextPhase></nextPhase>
 		<div class="slide-1 slides" ref="slide_1">
-			<div class="box"
-			@mouseover="textChange('supple')"
+			<div
+				class="box"
+				@mouseover="textChange('supple')"
 			>
 				<img
 					class="fullImg"
@@ -36,8 +39,9 @@
 			</div>
 		</div>
 		<div class="slide-3 slides" ref="slide_3">
-			<div class="box"
-			@mouseover="textChange('cleanse')"
+			<div
+				class="box"
+				@mouseover="textChange('cleanse')"
 			>
 				<img
 					class="fullImg"
@@ -53,13 +57,23 @@
 				</div>
 			</div>
 		</div>
+		
+
 		<div ref="ball" class="ball">
-			<p appear @beforeEnter="beforeEnter"  ref="cursor_text">lorem</p>
+			<p
+				appear
+				@beforeEnter="beforeEnter"
+				ref="cursor_text"
+			>
+				lorem
+			</p>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
+	import nextPhase from "./nextPhase.vue";
+
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
 	import Flip from "gsap/Flip";
@@ -67,62 +81,53 @@
 	import { onMounted, ref } from "vue";
 
 	gsap.registerPlugin(Flip, ScrollTrigger);
-	let halfWidth: any = ref("");
 	let ball: any = ref("");
 	const textChange: any = ref("");
 	let cursor_text: any = ref("");
 
-	const beforeEnter=(el:HTMLElement)=>{
-		gsap.fromTo(el,{
-			yPercent:50,
-			duration:1
-		},{
-			yPercent:0,
-		})
-	}
-
+	const beforeEnter = (el: HTMLElement) => {
+		gsap.fromTo(
+			el,
+			{
+				yPercent: 50,
+				duration: 1,
+			},
+			{
+				yPercent: 0,
+			}
+		);
+	};
+	let tl = gsap.timeline();
+	let pageHeight:any=ref('')
 
 	onMounted(() => {
 		let panels = gsap.utils.toArray(".slides");
-		let page: any = document.querySelector(
-			".motivationPage"
-		);
+		 pageHeight.value=document.querySelector('.motivationpage')?.clientHeight
+		
 
 		ScrollTrigger.create({
-			animation: gsap.from(panels, {
-				xPercent: -100 * (panels.length - 1),
+			animation: tl.from(panels, {
+				xPercent: 100 * (panels.length - 1),
 				ease: "none",
 			}),
 			trigger: ".motivationPage",
-			scrub: 8,
+			scrub: 2,
+			// end:`  +=300`,
 			pin: true,
-			start:'top top',
-			anticipatePin:1,
-			snap: 1 / (panels.length - 1),
+			start: `-=20px top`,
+			// markers:true,
+			anticipatePin: 1,
+			// snap: 1 / (panels.length - 1),
 			// pinSpacing:false,
 		});
-		// halfWidth.value = (e: any) => {
-		// 	const state = Flip.getState(e.srcElement);
-		// 	e.srcElement.className == "fullImg"
-		// 		? (e.srcElement.className = "sideImg")
-		// 		: (e.srcElement.className = "fullImg");
-		// 	console.log(e.srcElement.className);
 
-		// 	Flip.from(state, {
-		// 		duration: 1,
-		// 		ease: "power1.inOut",
-		// 	});
-		// };
 		document.onmousemove = (e) => {
 			ball.value.style.left = e.clientX + "px";
 			ball.value.style.top = e.clientY + "px";
 		};
-		textChange.value = (text:string) => {
-			
-			cursor_text.value.textContent=text
-			
+		textChange.value = (text: string) => {
+			cursor_text.value.textContent = text;
 		};
-		
 	});
 </script>
 
@@ -134,7 +139,8 @@
 		background-color: #fcfbf4;
 		position: relative;
 		overflow-x: hidden;
-		border: solid;
+		scroll-behavior: smooth;
+		direction: rtl;
 	}
 	img::-webkit-scrollbar {
 		width: 0;
@@ -165,6 +171,13 @@
 		position: relative;
 		top: 0;
 		background-color: #fcfbf4;
+		overflow: hidden;
+	}
+	.productsBox {
+		/* display: inline-block; */
+		
+		width: 100vw;
+		height: 100vh;
 	}
 
 	.box {
@@ -226,9 +239,8 @@
 		justify-content: center;
 		align-items: center;
 	}
-	.ball p{
-		
-		transition:all 1s;
+	.ball p {
+		transition: all 1s;
 		color: #fcfbf4;
 	}
 </style>
