@@ -103,7 +103,7 @@
 			<div ref="bg" class="bg">
 				<img
 					ref="img"
-					src="./assets/images/autumn-goodman-vTL_qy03D1I-unsplash.jpg"
+					src="./assets/images/autumn-goodman-vTL_qy03D1I-unsplash.webp"
 					alt=""
 				/>
 				<!-- <div class="logo">Brahma</div> -->

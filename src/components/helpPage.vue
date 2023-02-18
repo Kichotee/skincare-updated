@@ -43,7 +43,7 @@
 			<div class="info-media media-1">
 				<figure class="figure-1">
 					<img
-					src="../assets/images/pexels-anna-shvets-3852142.jpg"
+					src="../assets/images/pexels-anna-shvets-3852142.webp"
 
 						alt=""
 					/>
@@ -60,7 +60,7 @@
 			<div class="info-media media-3">
 				<figure class="figure-3">
 					<img
-						src="../assets/chris-lawton-c0rIh0nFTFU-unsplash.jpg"
+						src="../assets/images/chris-lawton-c0rIh0nFTFU-unsplash.webp"
 						alt=""
 					/>
 				</figure>
@@ -68,7 +68,7 @@
 			<div class="info-media media-4">
 				<figure class="figure-4">
 					<img
-						src="../assets/images/pexels-shiny-diamond-3762466.jpg"
+						src="../assets/images/pexels-shiny-diamond-3762466.webp"
 
 						alt=""
 					/>

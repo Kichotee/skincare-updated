@@ -21,13 +21,13 @@
 					Temporibus, architecto.
 				</p>
 				<img
-                src="../assets/images/pexels-ron-lach-8142196.jpg"
+                src="../assets/images/displayTextImg1.webp"
                 class="images"
                 alt=""
 				/>
 				<img
                 class="images"
-					src="../assets/images/pexels-cottonbro-4046314.jpg"
+					src="../assets/images/pexels-adrienne-andersen-2661255 (1).webp"
 					alt=""
 				/>
 			</div>
@@ -98,7 +98,7 @@
 		overflow: hidden;
 		justify-content: center;
 		align-items: center;
-        border: solid;
+
 		/**/
 	}
 	.description-box {
@@ -114,7 +114,7 @@
 		max-width: 100%;
 		height: 3rem;
 		border-radius: 50%;
-
+		object-fit: cover;
 		position: absolute;
 		vertical-align: middle;
 		/* border: solid; */

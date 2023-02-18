@@ -1,15 +1,15 @@
 <template>
-	<div class="motivationPage">
+	<div class="motivationPage" >
 		
-		<nextPhase></nextPhase>
-		<div class="slide-1 slides" ref="slide_1">
+		<nextPhase onmouseenter="document.querySelector('.ball').style.opacity=0"></nextPhase>
+		<div  onmouseenter="document.querySelector('.ball').style.opacity=1" class="slide-1 slides" ref="slide_1">
 			<div
 				class="box"
 				@mouseover="textChange('supple')"
 			>
 				<img
 					class="fullImg"
-					src="../assets/images/pexels-cottonbro-4046314.jpg"
+					src="../assets/images/pexels-cottonbro-studio-4004470.webp"
 					alt=""
 				/>
 				<div class="img-text-box">
@@ -28,7 +28,7 @@
 			>
 				<img
 					class="fullImg"
-					src="../assets/images/pexels-cottonbro-studio-4046316.jpg"
+					src="../assets/images/pexels-anna-shvets-3852142.webp"
 					alt=""
 				/>
 				<div class="img-text-box">
@@ -45,7 +45,7 @@
 			>
 				<img
 					class="fullImg"
-					src="../assets/images/pexels-karolina-grabowska-4210340.jpg"
+					src="../assets/images/pexels-john-tekeridis-3212164.webp"
 					alt=""
 				/>
 				<div class="img-text-box">
@@ -64,6 +64,7 @@
 				appear
 				@beforeEnter="beforeEnter"
 				ref="cursor_text"
+				id="cursor_text"
 			>
 				lorem
 			</p>
@@ -113,13 +114,13 @@
 			trigger: ".motivationPage",
 			scrub: 2,
 			// end:`  +=300`,
-			pin: true,
+			pin: '.motivationPage',
 			start: `-=20px top`,
-			// markers:true,
+			
 			anticipatePin: 1,
-			// snap: 1 / (panels.length - 1),
-			// pinSpacing:false,
+			
 		});
+		
 
 		document.onmousemove = (e) => {
 			ball.value.style.left = e.clientX + "px";
@@ -127,13 +128,15 @@
 		};
 		textChange.value = (text: string) => {
 			cursor_text.value.textContent = text;
+			document.querySelector('#cursor_text').style.opacity="1"
 		};
+		
 	});
 </script>
 
 <style scoped>
 	.motivationPage {
-		height: 100vh;
+		height: auto;
 		width: 100vw;
 		white-space: nowrap;
 		background-color: #fcfbf4;
@@ -145,6 +148,9 @@
 	img::-webkit-scrollbar {
 		width: 0;
 		height: 0;
+	}
+	.pin-Spacer{
+		height: 90% !important;
 	}
 	.img-text-box {
 		width: 40%;
@@ -165,7 +171,7 @@
 	}
 
 	.slides {
-		height: 90%;
+		height: 99%;
 		width: 60%;
 		display: inline-block;
 		position: relative;
@@ -176,12 +182,7 @@
 	.slides:last-of-type{
 		overflow: scroll;
 	}
-	.productsBox {
-		/* display: inline-block; */
-		
-		width: 100vw;
-		height: 100vh;
-	}
+	
 
 	.box {
 		width: 90%;
@@ -212,8 +213,8 @@
 		width: 100%;
 		margin: 0;
 		object-fit: cover;
-		object-position: bottom;
-		position: absolute;
+		object-position: top;
+		/* position: absolute; */
 		z-index: 10;
 		border-radius: 1rem;
 		transition: all 2s;
@@ -245,5 +246,7 @@
 	.ball p {
 		transition: all 1s;
 		color: #fcfbf4;
+		opacity: 0;
+		transition: all 0.5s;
 	}
 </style>
