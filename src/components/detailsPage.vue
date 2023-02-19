@@ -27,7 +27,7 @@
 				/>
 				<img
                 class="images"
-					src="../assets/images/pexels-adrienne-andersen-2661255 (1).webp"
+					src="../assets/images/pexels-adrienne-andersen-2661255-small.webp"
 					alt=""
 				/>
 			</div>
