@@ -128,7 +128,7 @@
 		};
 		textChange.value = (text: string) => {
 			cursor_text.value.textContent = text;
-			document.querySelector('#cursor_text').style.opacity="1"
+			cursor_text.value.style.opacity=1
 		};
 		
 	});
