@@ -146,9 +146,7 @@
 		width: 0;
 		height: 0;
 	}
-	.pin-Spacer{
-		height: 90% !important;
-	}
+	
 	.img-text-box {
 		width: 80%;
 		height: 10%;

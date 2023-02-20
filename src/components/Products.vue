@@ -65,9 +65,9 @@
 
 		<footer class="footer-frame2">
 			<!-- <div class="frame2"></div> -->
-			<div  class="frame3" ref="footer_box">
+			<div class="frame3" ref="footer_box">
 				<div class="box-1 footer-box">
-					Aphrodite 
+					Aphrodite
 				</div>
 				<div class="box-2 footer-box">
 					<ul>
@@ -83,17 +83,36 @@
 				</div>
 				<div class="box-3 footer-box">
 					<fieldset>
-
-
-						<label for="email"> Subscribe to our Email</label>
-						<input type="email" name="" id="" placeholder="Type your email">
+						<label for="email">
+							Subscribe to our Email</label
+						>
+						<input
+							type="email"
+							name=""
+							id=""
+							placeholder="Type your email"
+						/>
+							<FontAwesomeIcon class="arrow" :icon="faArrowRight"/>
 					</fieldset>
 					<div class="social-media">
-						<li>Instagram</li>
-						<li>Twitter</li>
+						<li>
+							<FontAwesomeIcon
+								:icon="faInstagram"
+							></FontAwesomeIcon>
+						</li>
+						<li>
+							<FontAwesomeIcon
+								:icon="faTwitter"
+							></FontAwesomeIcon>
+						</li>
 					</div>
+					
 				</div>
 			</div>
+			<div class="creator-box">
+				<p>created by <a href="https://twitter.com/Siriusliblack">Timi</a></p>
+			</div>
+		
 		</footer>
 	</section>
 </template>
@@ -101,6 +120,12 @@
 <script setup lang="ts">
 	import { onMounted, ref } from "vue";
 	import gsap from "gsap";
+	import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+	import {
+		faInstagram,
+		faTwitter,
+	} from "@fortawesome/free-brands-svg-icons";
+	import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 	import ScrollTrigger from "gsap/ScrollTrigger";
 	import image1 from "../assets/images/pexels-karolina-grabowska-4465124.webp";
 	import image2 from "../assets/images/pexels-karolina-grabowska-4041392.webp";
@@ -154,20 +179,24 @@
 				{},
 				{
 					yPercent: -100,
+					duration: 0.25,
 				}
 			).fromTo(
 				e.srcElement.childNodes[1],
 				{},
 				{
 					yPercent: 0,
+					duration: 0.25,
 				}
 			);
 		};
 		textLeave.value = (e: any) => {
 			tl.to(e.srcElement.childNodes[1], {
 				yPercent: -100,
+				duration: 0.25,
 			}).to(e.srcElement.childNodes[0], {
 				yPercent: 0,
+				duration: 0.25,
 			});
 			console.log("out");
 		};
@@ -182,10 +211,10 @@
 		boxShow.value = () => {
 			floatingImgBox.style.opacity = 1;
 		};
-		
+
 		myObserver.observe(footer_box.value);
 		// isVisible.value = visibility;
-		// isVisible? 
+		// isVisible?
 		// 	ScrollTrigger.create({
 		// 	animation: tl.to(".frame2", {
 		// 		// scale: 0.75,
@@ -194,7 +223,6 @@
 		// 	trigger:footer_box.value,
 		// 	markers:true
 		// }):''
-		
 	});
 </script>
 
@@ -221,7 +249,7 @@
 		align-items: center;
 		/* background-color: #343434; */
 	}
-	
+
 	#box {
 		width: 60%;
 		height: 70%;
@@ -238,9 +266,8 @@
 		width: 100%;
 		position: relative;
 		background: #000;
-	
 	}
-	
+
 	.frame3 {
 		/* border: 3px solid gray; */
 		border-radius: 1rem;
@@ -282,9 +309,6 @@
 		z-index: 12;
 		text-align: center;
 		position: relative;
-
-		
-		
 	}
 	p span {
 		text-align: center;
@@ -295,14 +319,12 @@
 
 		cursor: pointer;
 		z-index: 10;
-		transition: all 0.05s
-			;
+		transition: all 0.05s;
 	}
 	#changingText {
 		translate: 0 100%;
 		display: block;
 		font-family: Montreal;
-
 	}
 	.original-text {
 		/* translate: 0 100%; */
@@ -312,93 +334,114 @@
 	}
 	p:hover {
 	}
-	.footer-box{
+	.footer-box {
 		height: 100%;
-		width: calc(1/3*100%);
+		width: calc(1 / 3 * 100%);
+		display: flex;
 		position: relative;
 		z-index: 16;
-
-
 	}
-	.box-1{
+	.box-1 {
 		background: #000;
-
 	}
-	.box-2{
+	.box-2 {
 		background: #000;
-		display: flex; 
+		display: flex;
 		justify-content: space-around;
-		width:100%;
+		width: 100%;
 		height: 100%;
 		font-family: Montreal;
-
-		
-		
 	}
-	ul{
+	ul {
 		height: 50%;
 	}
-	
-	li{
+
+	li {
 		text-transform: uppercase;
 		overflow: hidden;
-		padding:0 0 2.5% 0;
+		padding: 0 0 2.5% 0;
 		position: relative;
 		width: max-content;
 		transition: all 0.8s linear;
 		cursor: pointer;
 		font-size: 1em;
 		list-style: none;
-
-
 	}
-	
-	li::after{
+
+	li::after {
 		height: 1px;
 		width: 100%;
-		content: '';
+		content: "";
 		background-color: #a4a4a4;
 		position: absolute;
-		bottom:20%;
+		bottom: 20%;
 		left: 0;
-		scale:0;
+		scale: 0;
 		transform-origin: left;
 		transition: all 0.8s linear;
 	}
-	li:hover::after{
-		scale:1;
+	li:hover::after {
+		scale: 1;
 	}
-	li:hover{
-		color: #aaa;
+	li:hover {
+		color: #343434;
 	}
-	.box-3{
+	.box-3 {
 		background: #000;
 		width: 100%;
 		height: 100%;
 		font-family: Montreal;
 		display: flex;
 		justify-content: space-around;
-
 	}
-	input[type=email]{
+	input[type="email"] {
 		outline: none;
 		border: none;
 		background-color: transparent;
-		border-bottom: 1px solid; 
+		border-bottom: 1px solid;
 		padding-inline-start: 2%;
 	}
-	label{
-		
+	label {
+		padding-bottom: 10%;
 	}
-	fieldset{
+	.arrow{
+		position: absolute;
+		right: 5%;
+		top: 45%;
+		font-size: 0.8rem;
+	}
+	fieldset {
 		border: none;
 		display: flex;
 		width: 40%;
 		height: 50%;
 		flex-direction: column;
+		position: relative;
+		;
 	}
-	::placeholder{
+	::placeholder {
 		font-size: 0.75rem;
 	}
-
+	.social-media{
+		width:40%;
+		height: 50%;
+		display: flex;
+		
+		justify-content: space-evenly;
+	}
+	.social-media li::after{
+		display: none;
+	}
+	.creator-box{
+		width: 100%;
+		height: 5vh;
+		position: absolute;
+		background-color: #000;
+	}
+	.creator-box p{
+		width: 20%;
+		margin: 0 auto;
+		color: #adadad;
+		font-family: Montreal;
+	}
 </style>

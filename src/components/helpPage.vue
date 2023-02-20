@@ -201,7 +201,7 @@
 				scale: 0.8,
 			},
 			{
-				yPercent: 0,
+				yPercent: -500,
 				scale: 1.5,
 			}
 		);
@@ -216,10 +216,10 @@
 		n.fromTo(
 			".figure-4",
 			{
-				xPercent: -300,
+				xPercent: 0,
 			},
 			{
-				xPercent: 0,
+				xPercent: -300,
 			}
 		);
 
@@ -245,7 +245,8 @@
 
 	.wrapper {
 		height: 100%;
-		width: 100%;
+		margin: 0% auto;
+		width: 95%;
 		position: relative;
 		display: grid;
 		overflow: hidden;
