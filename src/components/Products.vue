@@ -67,7 +67,7 @@
 			<!-- <div class="frame2"></div> -->
 			<div class="frame3" ref="footer_box">
 				<div class="box-1 footer-box">
-					Aphrodite
+					Rodite
 				</div>
 				<div class="box-2 footer-box">
 					<ul>
