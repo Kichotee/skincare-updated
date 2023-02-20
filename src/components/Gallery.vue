@@ -14,9 +14,7 @@
 				/>
 				<div class="img-text-box">
 					<p class="text">
-						0Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit. Aut,
-						quasi.
+						Unleash your skin's potential.
 					</p>
 				</div>
 			</div>
@@ -33,7 +31,7 @@
 				/>
 				<div class="img-text-box">
 					<p class="text">
-						there's always something next to do
+						Transform your skin's health.
 					</p>
 				</div>
 			</div>
@@ -50,9 +48,7 @@
 				/>
 				<div class="img-text-box">
 					<p class="text">
-						0Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit. Aut,
-						quasi.
+						Get the perfect skincare fit.
 					</p>
 				</div>
 			</div>
@@ -66,19 +62,20 @@
 				ref="cursor_text"
 				id="cursor_text"
 			>
-				lorem
+				
 			</p>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	import nextPhase from "./nextPhase.vue";
+	import nextPhase from "./Products.vue";
 
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
 	import Flip from "gsap/Flip";
 	import TextPlugin from "gsap/TextPlugin";
+	// import obser
 	import { onMounted, ref } from "vue";
 
 	gsap.registerPlugin(Flip, ScrollTrigger);
@@ -116,7 +113,7 @@
 			// end:`  +=300`,
 			pin: '.motivationPage',
 			start: `-=20px top`,
-			
+			snap:1/5,
 			anticipatePin: 1,
 			
 		});
@@ -153,7 +150,7 @@
 		height: 90% !important;
 	}
 	.img-text-box {
-		width: 40%;
+		width: 80%;
 		height: 10%;
 		position: absolute;
 		z-index: 11;
@@ -164,10 +161,14 @@
 	.text {
 		white-space: pre-wrap;
 		width: 100%;
-		font-size: 1.25rem;
+		font-size: 3.75rem;
 		padding: 2.5% 5%;
 		color: #fcfbf4;
-		font-weight: 600;
+		font-weight: 800;
+		font-family: Montreal;
+		text-align: center;
+		transition: all 2s  cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
 	}
 
 	.slides {
@@ -189,7 +190,7 @@
 		max-width: 90%;
 		height: 80%;
 
-		color: aliceblue;
+		color: #fcfbf4;
 		z-index: 12;
 		top: 50%;
 		left: 50%;
@@ -207,6 +208,10 @@
 
 	img:hover {
 		scale: 1.1;
+	}
+	
+	.box:hover .text{
+		translate: 0 -50%;
 	}
 	img {
 		height: 100%;

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 	import helpPage from "./components/helpPage.vue";
-	import motive from "./components/motive.vue";
+	import motive from "./components/Gallery.vue";
 	import detailsPage from "./components/detailsPage.vue";
+	import navbar from "./components/Navbar.vue";
 	import { onMounted, ref } from "vue";
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
@@ -99,6 +100,7 @@
 
 <template>
 	<div class="app">
+		<navbar/>
 		<div class="bg-box">
 			<div ref="bg" class="bg">
 				<img
@@ -148,7 +150,6 @@
 		<helpPage />
 		<detailsPage/>
 		<motive />
-		
 	</div>
 </template>
 
@@ -298,5 +299,11 @@
 		font-kerning: 2px;
 		display: inline-block;
 		vertical-align: middle;
+	}
+	
+	@media screen and (max-width:1024px) {
+		.app{
+			display:none;
+		}
 	}
 </style>
