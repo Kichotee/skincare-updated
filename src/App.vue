@@ -6,8 +6,10 @@
 	import { onMounted, ref } from "vue";
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
+import PageLoader from "./components/pageLoader.vue";
 
 	gsap.registerPlugin(ScrollTrigger);
+	let pageLoading=ref(true)
 	const header_text_frag_1 = ref("");
 	const header_text_frag_2 = ref("");
 	const header_text_frag_3 = ref("");
@@ -18,88 +20,103 @@
 	const img = ref("");
 	const tl = gsap.timeline();
 	const tl2 = gsap.timeline();
+
+	if (window.screen.width>=1024) {
+		setTimeout(()=>{
+
+			pageLoading.value = false;
+		},4500)
+		
+	}
 	onMounted(() => {
 		
-		gsap.from(bg.value, {
-			opacity: 0,
-			scaleX:1.5,
-			scaleY:1.5,
-			duration: 5,
-			ease:'expoOut'
-			// ease:("custom","M0,0,C0.126,0.382,-0.112,0.941,0.104,0.948,0.494,0.96,0.818,1.001,1,1"),
-		})
-			tl.from(header_text_frag_1.value, {
-				xPercent: -100,
-				duration: 1,
-			})
-			.from(header_text_frag_2.value, {
-				yPercent: 1000,
-				duration: 1,
-				// fontStyle: "italic"
-			})
-			.from(header_text_frag_3.value, {
-				xPercent: 100,
-				duration: 1,
-			})
-			.fromTo(
-				button_ref.value,
-				{
-					width: "50px",
-					height: "60px",
-					borderRadius: "50%",
-				},
-				{
-					borderRadius: "1rem",
-					width: "20%",
-					height: "15%",
-				},'<'
-			)
-			.fromTo(
-				button_text_ref.value,
-				{
+		if((window.screen.width > 1024)){
+			setTimeout(()=>{
+
+				gsap.from(bg.value, {
 					opacity: 0,
-					duration: 0.25,
-				},
-				{
-					opacity: 1,
-				}
-			);
+					scaleX:1.5,
+					scaleY:1.5,
+					duration: 5,
+					ease:'expoOut'
+					// ease:("custom","M0,0,C0.126,0.382,-0.112,0.941,0.104,0.948,0.494,0.96,0.818,1.001,1,1"),
+				})
+					tl.from(header_text_frag_1.value, {
+						xPercent: -100,
+						duration: 1,
+					})
+					.from(header_text_frag_2.value, {
+						yPercent: 1000,
+						duration: 1,
+						// fontStyle: "italic"
+					})
+					.from(header_text_frag_3.value, {
+						xPercent: 100,
+						duration: 1,
+					})
+					.fromTo(
+						button_ref.value,
+						{
+							width: "50px",
+							height: "60px",
+							borderRadius: "50%",
+						},
+						{
+							borderRadius: "1rem",
+							width: "20%",
+							height: "15%",
+						},'<'
+					)
+					.fromTo(
+						button_text_ref.value,
+						{
+							opacity: 0,
+							duration: 0.25,
+						},
+						{
+							opacity: 1,
+						}
+					);
+		
+				tl2.fromTo(
+					img.value,
+					{
+						scale:0.5,
+						
+					},
+					{
+						duration: 5,
+						scale: 2,
+					}
+				);
+		
+				ScrollTrigger.create({
+					animation: gsap.fromTo(
+						header_text.value,
+		
+						{
+							yPercent: 100,
+						},
+						{yPercent:-20}
+					),
+					scrub: 1,
+					trigger: img.value,
+				});
+				ScrollTrigger.create({
+					animation: tl2,
+					scrub: 3,
+					trigger: img.value,
+					// markers:true
+				});
+			},4700)
 
-		tl2.fromTo(
-			img.value,
-			{
-				scale:0.5,
-				
-			},
-			{
-				duration: 5,
-				scale: 2,
-			}
-		);
-
-		ScrollTrigger.create({
-			animation: gsap.fromTo(
-				header_text.value,
-
-				{
-					yPercent: 100,
-				},
-				{yPercent:-20}
-			),
-			scrub: 1,
-			trigger: img.value,
-		});
-		ScrollTrigger.create({
-			animation: tl2,
-			scrub: 3,
-			trigger: img.value,
-			// markers:true
-		});
+		}
 	});
 </script>
 
 <template>
-	<div class="app">
+	<PageLoader v-if="pageLoading"/>
+	<div class="app" v-else>
 		<navbar/>
 		<div class="bg-box">
 			<div ref="bg" class="bg">
