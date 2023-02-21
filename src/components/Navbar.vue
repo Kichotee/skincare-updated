@@ -1,7 +1,7 @@
 <template>
     <nav>
         <div class="menu">
-            <div class="">
+            <div  class="" @click="$emit('toggleMenu',menuOpen)">
                 <FontAwesomeIcon :icon="faBars"/>
                 menu
             </div>
@@ -20,7 +20,14 @@
 <script setup lang="ts">
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { ref } from 'vue';
 
+let menuOpen=ref(false)
+const toggleMenu=()=>{
+    menuOpen.value=!menuOpen.value
+}
+
+defineEmits(['toggleMenu'])
 
 </script>
 

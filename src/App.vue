@@ -3,7 +3,7 @@
 	import motive from "./components/Gallery.vue";
 	import detailsPage from "./components/detailsPage.vue";
 	import navbar from "./components/Navbar.vue";
-	import { onMounted, ref } from "vue";
+	import { onMounted, ref, computed } from "vue";
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
 import PageLoader from "./components/pageLoader.vue";
@@ -28,7 +28,18 @@ import PageLoader from "./components/pageLoader.vue";
 		},4500)
 		
 	}
+	let menuChange=	computed(()=>{
+		
+	})
+	const changeMenu=(menuOpen:any)=>{
+		menuChange=menuOpen
+		menuOpen=!menuOpen
+	}
+
+	console.log(menuChange);
+	
 	onMounted(() => {
+		
 		
 		if((window.screen.width > 1024)){
 			setTimeout(()=>{
@@ -115,58 +126,63 @@ import PageLoader from "./components/pageLoader.vue";
 </script>
 
 <template>
-	<PageLoader v-if="pageLoading"/>
-	<div class="app" v-else>
-		<navbar/>
-		<div class="bg-box">
-			<div ref="bg" class="bg">
-				<img
-					ref="img"
-					src="./assets/images/autumn-goodman-vTL_qy03D1I-unsplash.webp"
-					alt=""
-				/>
-				<!-- <div class="logo">Brahma</div> -->
+	<PageLoader v-show="pageLoading"/>
+	<div class="menu-bg"  v-if="!pageLoading">
 
-				<div
-					ref="header_text"
-					class="home-header-media-content"
-				>
+
+
+		<div class="app" >
+			<navbar @toggleMenu="changeMenu" />
+			<div class="bg-box">
+				<div ref="bg" class="bg">
+					<img
+						ref="img"
+						src="./assets/images/autumn-goodman-vTL_qy03D1I-unsplash.webp"
+						alt=""
+					/>
+					<!-- <div class="logo">Brahma</div> -->
+	
 					<div
-						ref="home-header-media-content-text"
-						class="home-header-media-content-text"
+						ref="header_text"
+						class="home-header-media-content"
 					>
-						<p ref="header_text_frag_1">
-							Grace your <span>body</span> 
-						</p>
+						<div
+							ref="home-header-media-content-text"
+							class="home-header-media-content-text"
+						>
+							<p ref="header_text_frag_1">
+								Grace your <span>body</span> 
+							</p>
+							
+								<span
+									ref="header_text_frag_2"
+									class="italic-text"
+								>
+									Adorn
+								</span>
+								<span
+									class="bold-text-frag"
+									ref="header_text_frag_3"
+								>
+									your skin
+								</span>
 						
-							<span
-								ref="header_text_frag_2"
-								class="italic-text"
-							>
-								Adorn
-							</span>
-							<span
-								class="bold-text-frag"
-								ref="header_text_frag_3"
-							>
-								your skin
-							</span>
-					
+						</div>
+						<button
+							ref="button_ref"
+							class="home-header-media-content-button"
+						>
+							<h2 ref="button_text_ref">
+								Shop now
+							</h2>
+						</button>
 					</div>
-					<button
-						ref="button_ref"
-						class="home-header-media-content-button"
-					>
-						<h2 ref="button_text_ref">
-							Shop now
-						</h2>
-					</button>
 				</div>
 			</div>
+			<helpPage />
+			<detailsPage/>
+			<motive />
 		</div>
-		<helpPage />
-		<detailsPage/>
-		<motive />
 	</div>
 </template>
 
@@ -178,6 +194,12 @@ import PageLoader from "./components/pageLoader.vue";
 		scroll-behavior: smooth;
 		font-family: editorial;
 		word-spacing: 0.75rem;
+	}
+	.menu-bg{
+		min-height: 100vh;
+		max-height: auto;
+		background: #343434;
+		position: relative;
 	}
 	.logo {
 		right: 0;

@@ -17,11 +17,14 @@ onMounted(()=>{
         opacity:0,
         duration:1
     })
-    setTimeout(()=>{
-        gsap.to('.pageLoader',{
-            yPercent:101
-        })
-    },4500)
+    if(window.screen.width>1024){
+        setTimeout(()=>{
+            gsap.to('.pageLoader',{
+                yPercent:101
+            })
+        },4500)
+    }
+
 })
 
 let textVisible=ref(false)
