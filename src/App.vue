@@ -6,10 +6,12 @@
 	import { onMounted, ref, computed } from "vue";
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
-import PageLoader from "./components/pageLoader.vue";
+	import PageLoader from "./components/pageLoader.vue";
+	import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 	gsap.registerPlugin(ScrollTrigger);
-	let pageLoading=ref(true)
+	let pageLoading = ref(true);
 	const header_text_frag_1 = ref("");
 	const header_text_frag_2 = ref("");
 	const header_text_frag_3 = ref("");
@@ -20,42 +22,57 @@ import PageLoader from "./components/pageLoader.vue";
 	const img = ref("");
 	const tl = gsap.timeline();
 	const tl2 = gsap.timeline();
-
-	if (window.screen.width>=1024) {
-		setTimeout(()=>{
-
+	let menuOptions = {
+		open: true,
+		close: false,
+	};
+	if (window.screen.width >= 1024) {
+		setTimeout(() => {
 			pageLoading.value = false;
-		},4500)
-		
-	}
-	let menuChange=	computed(()=>{
-		
-	})
-	const changeMenu=(menuOpen:any)=>{
-		menuChange=menuOpen
-		menuOpen=!menuOpen
+		}, 4500);
 	}
 
-	console.log(menuChange);
+	const menuChange = ref(false)
+	const changeMenu = (menuToggle:any) => {
+		console.log(menuToggle);
+		
+		if(menuToggle){
+			gsap.to('.app',{
+				duration:1,
+				rotate:'25deg',
+				Height: '100vh',
+			})
+			gsap.to('.menu-bg',{
+			})
+			
+		}
+		else{
+			gsap.to('.app',{
+				duration:1,
+				rotate:0,
+				Height: 'auto',
+			})
+			gsap.to('.menu-bg',{
+			})
+			
+		}
+	};
+	
 	
 	onMounted(() => {
-		
-		
-		if((window.screen.width > 1024)){
-			setTimeout(()=>{
-
+		if (window.screen.width > 1024) {
+			setTimeout(() => {
 				gsap.from(bg.value, {
-					opacity: 0,
-					scaleX:1.5,
-					scaleY:1.5,
+					scaleX: 1.5,
+					scaleY: 1.5,
 					duration: 5,
-					ease:'expoOut'
+					ease: "expoOut",
 					// ease:("custom","M0,0,C0.126,0.382,-0.112,0.941,0.104,0.948,0.494,0.96,0.818,1.001,1,1"),
+				});
+				tl.from(header_text_frag_1.value, {
+					xPercent: -100,
+					duration: 1,
 				})
-					tl.from(header_text_frag_1.value, {
-						xPercent: -100,
-						duration: 1,
-					})
 					.from(header_text_frag_2.value, {
 						yPercent: 1000,
 						duration: 1,
@@ -76,7 +93,8 @@ import PageLoader from "./components/pageLoader.vue";
 							borderRadius: "1rem",
 							width: "20%",
 							height: "15%",
-						},'<'
+						},
+						"<"
 					)
 					.fromTo(
 						button_text_ref.value,
@@ -88,27 +106,26 @@ import PageLoader from "./components/pageLoader.vue";
 							opacity: 1,
 						}
 					);
-		
+
 				tl2.fromTo(
 					img.value,
 					{
-						scale:0.5,
-						
+						scaleY: 0.5,
 					},
 					{
 						duration: 5,
 						scale: 2,
 					}
 				);
-		
+
 				ScrollTrigger.create({
 					animation: gsap.fromTo(
 						header_text.value,
-		
+
 						{
 							yPercent: 100,
 						},
-						{yPercent:-20}
+						{ yPercent: -20 }
 					),
 					scrub: 1,
 					trigger: img.value,
@@ -119,20 +136,27 @@ import PageLoader from "./components/pageLoader.vue";
 					trigger: img.value,
 					// markers:true
 				});
-			},4700)
-
+			}, 4700);
 		}
 	});
 </script>
 
 <template>
-	<PageLoader v-show="pageLoading"/>
-	<div class="menu-bg"  v-if="!pageLoading">
-
-
-
-		<div class="app" >
-			<navbar @toggleMenu="changeMenu" />
+	<PageLoader v-show="pageLoading" />
+	<div class="menu-bg" v-if="!pageLoading">
+		<article>
+			<!-- <FontAwesomeIcon :icon="faClose"/> -->
+			<p>Shop</p>
+			<p>Looks</p>
+			<p>About</p>
+		</article>
+		</div>
+		<navbar
+		v-if="!pageLoading"
+			@toggleMenu="changeMenu"
+			:menuOptions="menuOptions"
+		/>
+		<div class="app"  v-if="!pageLoading" >
 			<div class="bg-box">
 				<div ref="bg" class="bg">
 					<img
@@ -141,7 +165,7 @@ import PageLoader from "./components/pageLoader.vue";
 						alt=""
 					/>
 					<!-- <div class="logo">Brahma</div> -->
-	
+
 					<div
 						ref="header_text"
 						class="home-header-media-content"
@@ -151,22 +175,24 @@ import PageLoader from "./components/pageLoader.vue";
 							class="home-header-media-content-text"
 						>
 							<p ref="header_text_frag_1">
-								Grace your <span>body</span> 
+								Grace your <span>body</span
+								>{{
+									menuChange ? menuChange : ""
+								}}
 							</p>
-							
-								<span
-									ref="header_text_frag_2"
-									class="italic-text"
-								>
-									Adorn
-								</span>
-								<span
-									class="bold-text-frag"
-									ref="header_text_frag_3"
-								>
-									your skin
-								</span>
-						
+
+							<span
+								ref="header_text_frag_2"
+								class="italic-text"
+							>
+								Adorn
+							</span>
+							<span
+								class="bold-text-frag"
+								ref="header_text_frag_3"
+							>
+								your skin
+							</span>
 						</div>
 						<button
 							ref="button_ref"
@@ -180,10 +206,10 @@ import PageLoader from "./components/pageLoader.vue";
 				</div>
 			</div>
 			<helpPage />
-			<detailsPage/>
+			<detailsPage />
 			<motive />
 		</div>
-	</div>
+	
 </template>
 
 <style scoped>
@@ -194,12 +220,59 @@ import PageLoader from "./components/pageLoader.vue";
 		scroll-behavior: smooth;
 		font-family: editorial;
 		word-spacing: 0.75rem;
+		position: sticky;
+		top: 0;
+		z-index: 17;
+		transform-origin: right;
 	}
-	.menu-bg{
-		min-height: 100vh;
-		max-height: auto;
-		background: #343434;
+	article{
+		height: 99vh;
+		color: white;
+		width: 40%;
+		display: flex;
+		flex-direction: column;
+		padding: 5% 0 5% 2.5%;
+		justify-content: space-evenly;
+		align-items: start;
+		font-size: 3rem;
+	}article p {
+		text-transform: uppercase;
+		overflow: hidden;
+		padding: 0 0 2.5% 0;
 		position: relative;
+		width: max-content;
+		transition: all 0.8s linear;
+		cursor: pointer;
+		font-size: 1em;
+		list-style: none;
+	}
+	article p::after {
+		height: 1px;
+		width: 100%;
+		content: "";
+		background-color: #a4a4a4;
+		position: absolute;
+		bottom: 20%;
+		left: 0;
+		scale: 0;
+		transform-origin: left;
+		transition: all 0.8s linear;
+	}
+	article p:hover::after {
+		scale: 1;
+	}
+	article p:hover {
+		color: #444;
+	}
+	.menu-bg {
+		min-height: 100%;
+		/* height: 100vh; */
+		position: fixed;
+		background: #343434;
+		z-index: 15;
+		top:0;
+		width: 100vw;
+		overflow: hidden;
 	}
 	.logo {
 		right: 0;
@@ -207,7 +280,6 @@ import PageLoader from "./components/pageLoader.vue";
 		position: fixed;
 	}
 	.bg-box {
-
 		height: 100vh;
 		width: 100%;
 		position: relative;
@@ -240,8 +312,6 @@ import PageLoader from "./components/pageLoader.vue";
 		width: 100%;
 		position: absolute;
 		object-position: center;
-		
-
 	}
 
 	.home-header-media-content {
@@ -251,14 +321,13 @@ import PageLoader from "./components/pageLoader.vue";
 		height: 70%;
 		/* border: solid; */
 		align-self: center;
-		
+
 		font-weight: 600;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		
-		
+
 		line-height: 2rem;
 		color: inherit;
 		/* overflow-x: hidden; */
@@ -317,10 +386,8 @@ import PageLoader from "./components/pageLoader.vue";
 	}
 
 	.lower-header-text {
-		
 	}
-	span:first-of-type{
-
+	span:first-of-type {
 		font-family: Montreal;
 		font-style: italic;
 	}
@@ -339,10 +406,10 @@ import PageLoader from "./components/pageLoader.vue";
 		display: inline-block;
 		vertical-align: middle;
 	}
-	
-	@media screen and (max-width:1024px) {
-		.app{
-			display:none;
+
+	@media screen and (max-width: 1024px) {
+		.app {
+			display: none;
 		}
 	}
 </style>

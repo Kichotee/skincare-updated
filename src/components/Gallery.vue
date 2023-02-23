@@ -115,6 +115,8 @@
 			start: `-=20px top`,
 			snap:1/5,
 			anticipatePin: 1,
+
+			
 			
 		});
 		
@@ -133,11 +135,13 @@
 
 <style scoped>
 	.motivationPage {
+		min-height: 100vh;
 		height: auto;
 		width: 100vw;
 		white-space: nowrap;
 		background-color: #fcfbf4;
 		position: relative;
+		border: solid;
 		overflow-x: hidden;
 		scroll-behavior: smooth;
 		direction: rtl;
