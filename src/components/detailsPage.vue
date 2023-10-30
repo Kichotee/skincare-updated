@@ -4,21 +4,16 @@
 			<div class="description-box">
 				<p class="description-box-text">
 					<span class="animatedText">
-						Lorem ipsum dolor
+						Elevate your beauty with our premium skincare line.
 					</span>
 					<span class="animatedText">
-						sit amet consectetur dolor ipsum
-						dolor</span
+						 Discover timeless radiance and confidence. Unleash your inner glow today.</span
 					>
 					<br />
-					sit amet consectetur adipisicing elit.
-					Enim.
+					Discover timeless radiance and confidence.
 					<br />
-					Lorem ipsum dolor sit amet consectetur
-					adipisicing elit. <br />
-					Lorem ipsum dolor sit amet consectetur
-					adipisicing elit. <br />
-					Temporibus, architecto.
+					Unleash your inner glow today. <br />
+					
 				</p>
 				<img
                 src="../assets/images/displayTextImg1.webp"
